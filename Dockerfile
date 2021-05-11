@@ -9,8 +9,8 @@ COPY hello.go .
 
 RUN go mod init example.com/hello
 
-RUN /coverity/cov-analysis-linux64-2020.12/bin/cov-configure --go
-RUN /coverity/cov-analysis-linux64-2020.12/bin/cov-build --dir idir go build -o main .
-RUN /coverity/cov-analysis-linux64-2020.12/bin/cov-analyze --dir idir --all
+RUN /coverity/cov-analysis-linux64-2020.12/bin/cov-configure --go \
+    && /coverity/cov-analysis-linux64-2020.12/bin/cov-build --dir idir go build -o main . \
+    && /coverity/cov-analysis-linux64-2020.12/bin/cov-analyze --dir idir --all
 
 CMD ["/app/main"]
