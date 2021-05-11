@@ -1,4 +1,5 @@
-FROM golang:1.13.4-alpine
+#FROM golang:1.13.4-alpine
+FROM golang:buster
 
 RUN mkdir /app
 WORKDIR /app
