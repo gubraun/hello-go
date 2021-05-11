@@ -7,8 +7,10 @@ ADD cov-analysis-linux64-2020.12.tar.gz /coverity
 COPY license.dat /coverity/cov-analysis-linux64-2020.12/bin
 COPY hello.go .
 
-RUN /coverity/cov-analysis-linux64-2020.12/bin/cov-configure --go
 RUN go mod init example.com/hello
-RUN go build -o main .
+
+RUN /coverity/cov-analysis-linux64-2020.12/bin/cov-configure --go
+RUN /coverity/cov-analysis-linux64-2020.12/bin/cov-build --dir idir go build -o main .
+RUN /coverity/cov-analysis-linux64-2020.12/bin/cov-analyze --dir idir --all
 
 CMD ["/app/main"]
